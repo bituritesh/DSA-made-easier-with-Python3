@@ -33,7 +33,9 @@ mid_value=6 which is smaller than mid+1 but greater than mid-1 which satisfies o
 Ex 3
 arr3=[10, 11, 15, 16,17, 6, 8, 9]
 mid_value=17 which is greater than mid+1 but greater than mid-1,
-
+Ex 4
+arr4=[11, 12, 0, 5, 6, 10] sum=17
+output 2
 a minimum element is the one whose previous value is greater than it, thats the unique thing we can find here.
 All the values in the array is distinct and unique
 now to check number of pairs which yields the sum for arr1=[11, 15, 6, 8, 9, 10]
@@ -58,24 +60,24 @@ def NoOfPairs(L,R,a,s):
     while L!=R:
         if a[L]+a[R]==s:
             counter+=1
-            R-=1
-            if R<0:
-                R=(n+R)%n
             # The below condition is
             # required to be checked,
             # otherwise l and r will
             # cross each other and
             # loop will never terminate.
+            R-=1
+            if R<0:
+                R=(n+R)%n
             if L==R:
                 break
             L+=1
             if L==n:
                 L=L-n
-        if a[L]+a[R]>s:
+        elif a[L]+a[R]>s:
             R-=1
             if R<0:
                 R=(n+R)%n
-        if a[L]+a[R]<s:
+        else:
             L+=1
             if L==n:
                 L=L-n
@@ -84,6 +86,7 @@ n=int(input('enter the size of the array'))
 arr=list(map(int,input().split(' ')[:n]))#slicing method it takes only up to n even if user enters more than N numbers
 sum=17
 L=minElementBinSearch(arr,n)
+print(L)
 L_index=arr.index(L)
 R=arr[L_index-1]
 R_index=L_index-1
